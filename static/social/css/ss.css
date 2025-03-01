@@ -1,0 +1,66 @@
+@import "../../templates/PTSans/stylesheet.css";
+
+* {margin: 0; padding: 0; box-sizing: border-box;}
+
+html, body{
+    font-family: "PT Sans", "Segoe UI", sans-serif;
+}
+.container{
+    display: block;
+    padding: 3em 15%;
+}
+.block1{
+    display: flex;
+    background-color: #FFDC00;
+}
+header{
+    display: flex;
+    position: relative;
+}
+.bar{
+    position: absolute;
+    right: 0;
+}
+.bar li{
+    display: inline-block;
+    font-size: 22px;
+    margin-left: 2em;
+    font-weight: bold;
+}
+.banner{
+    display: flex;
+    position: relative;
+    margin-top: 5em;
+}
+.left{
+    width: 70%;
+}
+.right{
+    position: absolute;
+    right: 0;
+}
+.right img{
+    width: 250px;
+}
+.left li{
+    display: inline-block;
+    margin-right: 2em;
+}
+
+.left p, .left ul li{
+    margin-top: 2em;
+}
+.text{
+    font-size: 45px;
+    font-weight: bold;
+}
+.text2{
+    font-size: 25px;
+    font-weight: lighter;
+}
+
+.text3{
+    font-size: 20px;
+    font-weight: lighter;
+    color: #333333;
+}

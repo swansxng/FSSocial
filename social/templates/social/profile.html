@@ -1,0 +1,161 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Blinker&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="{% static 'social/css/profile.css' %}">
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" async="" src="{% static 'social/js/delete_post.js' %}"></script>
+    <script type="text/javascript" async="" src="{% static 'social/js/create_post.js' %}"></script>
+    <script type="text/javascript" async="" src="{% static 'social/js/comments.js' %}"></script>
+    <script type="text/javascript" async="" src="{% static 'social/js/modal_post.js' %}"></script>
+    <script type="text/javascript" async="" src="{% static 'social/js/fetch_search.js' %}"></script>
+</head>
+<body>
+    <div class="header">
+        <div class="header__selection">
+            <a class="logo" href="{% url 'index' %}">Social</a>
+            <div class="header_middle">
+                <div class="finder_container">
+                    <input id="find" class="find" type="text" placeholder="Search">
+                    <div class="find_results" style="display: none">
+                        <a class="find_result" href="{% url 'profile' 1 %}">
+                            <div class="find_result_leftside">
+                                <div class="image_profile">
+                                    <img src="{% static 'social/images/defaults/empty user image/camera_400.png' %}" height="36" width="36" class="profile_img">
+                                </div>
+                            </div>
+                            <div class="find_result_rightside">
+                                <div class="find_result_name">Iliya Zvontzev</div>
+                                <div class="find_result_overview">Лох какой-то, 1 follower</div>
+                            </div>
+                        </a>
+                        <a class="find_result" href="{% url 'profile' 2 %}">
+                            <div class="find_result_leftside">
+                                <div class="image_profile">
+                                    <img src="{% static 'social/images/defaults/empty user image/camera_400.png' %}" height="36" width="36" class="profile_img">
+                                </div>
+                            </div>
+                            <div class="find_result_rightside">
+                                <div class="find_result_name">Maya Zvontzeva</div>
+                                <div class="find_result_overview">Где посты?, 1 follower</div>
+                            </div>
+                        </a>
+                        <a class="find_result" href="{% url 'profile' 4 %}">
+                            <div class="find_result_leftside">
+                                <div class="image_profile">
+                                    <img src="{% static 'social/images/defaults/empty user image/camera_400.png' %}" height="36" width="36" class="profile_img">
+                                </div>
+                            </div>
+                            <div class="find_result_rightside">
+                                <div class="find_result_name">Ivan Makivskiy</div>
+                                <div class="find_result_overview">нн, 1 follower</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="header_links">
+                    <a href="{% url 'messages' %}">
+                        <svg width="36" height="36" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><g id="message_outline_20__Page-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="message_outline_20__message_outline_20"><path id="message_outline_20__Shape" opacity=".4" d="M0 0h20v20H0z"></path><path d="M6.83 15.75c.2-.23.53-.31.82-.2.81.3 1.7.45 2.6.45 3.77 0 6.75-2.7 6.75-6s-2.98-6-6.75-6S3.5 6.7 3.5 10c0 1.21.4 2.37 1.14 3.35.1.14.16.31.15.49-.04.76-.4 1.78-1.08 3.13 1.48-.11 2.5-.53 3.12-1.22ZM3.24 18.5a1.2 1.2 0 0 1-1.1-1.77A10.77 10.77 0 0 0 3.26 14 7 7 0 0 1 2 10c0-4.17 3.68-7.5 8.25-7.5S18.5 5.83 18.5 10s-3.68 7.5-8.25 7.5c-.92 0-1.81-.13-2.66-.4-1 .89-2.46 1.34-4.35 1.4Z" id="message_outline_20__Icon-Color" fill="currentColor" fill-rule="nonzero"></path></g></g></svg>
+                    </a>
+                </div>
+            </div>
+            {% if session_id != False %}
+            <a class="logout" href="{% url 'logout' %}">Logout</a>
+            {% else %}
+            <a class="logout" href="{% url 'login' %}">Login</a>
+            {% endif %}
+        </div>
+
+    </div>
+
+    <div class="container">
+
+        <div class="profile">
+        	<div class="image_profile">
+        		<img src="{% static 'social/images/defaults/empty user image/camera_400.png' %}" height="150" width="150" class="profile_img">
+        	</div>
+        	<div class="info_profile" style="display: flex"><div class="owner_profile">{{ title }}</div><svg viewBox="0 0 12 12" width="16" height="16" xmlns="http://www.w3.org/2000/svg"><path d="m2.25 6.75 2.25 2.25 5.25-5.25" fill="none" stroke="#5c9ce6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg></div>
+        </div>
+        {% if session_id == profile_id %}
+        <button id="dbb" class="double-border-button" onclick="postCreate_showhide()">Create post</button>
+        <div id="create_post" class="create_post" style="display: none; margin-bottom: 10px;">
+            <form action="" method="post" enctype="multipart/form-data" class="form-contact">
+                {% csrf_token %}
+                <textarea class="create_post_textarea" name="posttext" placeholder="Tell me your cool story" style="width:100%;height:150px;resize:none;margin-bottom:4px;"></textarea>
+                <div class="underform">
+                    <div class="left_underform">
+                        <input type="file" name="photo" multiple accept="image/*,image/jpeg">
+                    </div>
+                    <input class="dopost" type="submit" value="Post" />
+                </div>
+
+            </form>
+        </div>
+        {% endif %}
+        <div class="posts">
+            {% for post in posts %}
+            <div id="post{{post.post_id}}" class="post">
+                <div class="post_content">
+                    <div class="post_header">
+                        <div class="post_header_leftside">
+                            <div class="post_header_img">
+                                <img src="{% static 'social/images/defaults/empty user image/camera_400.png' %}" height="40" width="40" class="profile_img">
+                            </div>
+            		        <div class="post_header_data">
+            			        <div class="post_author">{{ title }}</div>
+            			        <div class="post_time">recently</div>
+            		        </div>
+                        </div>
+                        {% if session_id == profile_id %}
+                        <div onclick="delete_post({{ post.post_id }})" class="post_header_rightside">✕</div>
+                        {% endif %}
+            	    </div>
+                    <div class="post_text">{{ post.posttext }}</div>
+                    {% if post.image != '' %}
+                        <div class="post_photo_container">
+                            <img class="post_photo" draggable="false" onclick="postModal_showhide({{ post.post_id }})" src="{% static 'social/usermedia/profiles/posts/' %}{{ post.image }}">
+                            <div id="post_photo_full{{ post.post_id }}" class="post_photo_full" style="display: none">
+                                <img class="post_photo_modal" src="{% static 'social/usermedia/profiles/posts/' %}{{ post.image }}">
+                                <div class="post_overlay" onclick="postModal_showhide({{ post.post_id }})"></div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="post_footer" style="">
+                    <svg class="footerLikeSVG" onclick="post_like({{ post.post_id }})" fill="#ffffff" height="20px" width="20px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-1.56 -1.56 55.12 55.12" xml:space="preserve" stroke="#ffffff" stroke-width="2.07988"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M51.911,16.242C51.152,7.888,45.239,1.827,37.839,1.827c-4.93,0-9.444,2.653-11.984,6.905 c-2.517-4.307-6.846-6.906-11.697-6.906c-7.399,0-13.313,6.061-14.071,14.415c-0.06,0.369-0.306,2.311,0.442,5.478 c1.078,4.568,3.568,8.723,7.199,12.013l18.115,16.439l18.426-16.438c3.631-3.291,6.121-7.445,7.199-12.014 C52.216,18.553,51.97,16.611,51.911,16.242z M49.521,21.261c-0.984,4.172-3.265,7.973-6.59,10.985L25.855,47.481L9.072,32.25 c-3.331-3.018-5.611-6.818-6.596-10.99c-0.708-2.997-0.417-4.69-0.416-4.701l0.015-0.101C2.725,9.139,7.806,3.826,14.158,3.826 c4.687,0,8.813,2.88,10.771,7.515l0.921,2.183l0.921-2.183c1.927-4.564,6.271-7.514,11.069-7.514 c6.351,0,11.433,5.313,12.096,12.727C49.938,16.57,50.229,18.264,49.521,21.261z"></path> </g> </g></svg>
+                    <div class="post_likeCount">{{ post.likes }}</div>
+                </div>
+                <div id="comment_section{{post.post_id}}" class="comment_section">
+                    <div id="post_comments{{post.post_id}}" class="post_comments">
+                        {% for comment in post.comments_set.all %}
+                        <div class="comment_block" style="display: flex;">
+                            <div class="comment_photo_data">
+                                <img src="{% static 'social/images/defaults/empty user image/camera_400.png' %}" height="34" width="34" class="profile_img">
+                            </div>
+                            <div class="comment_info_data">
+                                <a class="comment_author" href="{% url 'profile' comment.owner_id %}">{{ comment.owner_name }}</a>
+                                <div class="comment_text">{{ comment.commenttext }}</div>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                    <div class="comment_write_container">
+                        <div id="comment_write{{post.post_id}}" class="comment_write" contenteditable="true"></div>
+                        <button class="comment_send" onclick="sendComment({{post.post_id}}, {{profile_id}}, {{session_id}}, '{{session_name}}')">
+                            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="send_24__Page-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="send_24__send_24"><path id="send_24__Rectangle-76" d="M0 0h24v24H0z"></path><path d="M5.74 15.75a39.14 39.14 0 0 0-1.3 3.91c-.55 2.37-.95 2.9 1.11 1.78 2.07-1.13 12.05-6.69 14.28-7.92 2.9-1.61 2.94-1.49-.16-3.2C17.31 9.02 7.44 3.6 5.55 2.54c-1.89-1.07-1.66-.6-1.1 1.77.17.76.61 2.08 1.3 3.94a4 4 0 0 0 3 2.54l5.76 1.11a.1.1 0 0 1 0 .2L8.73 13.2a4 4 0 0 0-3 2.54Z" id="send_24__Mask" fill="currentColor"></path></g></g></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

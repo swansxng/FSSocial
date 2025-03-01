@@ -1,0 +1,157 @@
+*{
+    font-family: Montserrat;
+    outline: 0 !important;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    word-wrap: break-word;
+    color: var(--main-text-color);
+    scrollbar-width: thin;
+    font-size: 15px;
+}
+
+*::-webkit-scrollbar {
+    width: 12px;
+
+}
+
+:root {
+    --global-font: Blinker(unused var);
+    --second-font: Montserrat(unused var);
+    --header-height: 48px;
+    --main-block-color: rgb(49, 49, 49);
+    --main-background-color: #222;
+    --main-border-color: #a0a0a0;
+    --second-border-color: black;
+    --main-text-color: white;
+    --second-text-color: #d3d3d3;
+    --text-selection-color: light-blue;
+    --writefield-text-color: white;
+    --writefield-background-color: rgb(62, 62, 62);
+    --writefield-placeholder-color: gray;
+}
+
+body {
+    background-color: var(--main-background-color);
+}
+
+.container {
+	display: flex;
+	width: 850px;
+	margin-top: var(--header-height);
+	flex-direction: column;
+	margin-left: auto;
+    margin-right: auto;
+}
+
+.messenger_field {
+    display: flex;
+    height: calc(100vh - var(--header-height) - 32px);
+    background-color: var(--main-block-color);
+    border-radius: 5px;
+    border: 1px var(--main-border-color) solid;
+}
+
+.dialogs {
+    border-right: 1px var(--main-border-color) solid;
+    height: 100%;
+    width: 300px;
+    overflow-y: auto;
+}
+
+.dialog {
+    padding: 8px 0 0 8px;
+    display: flex;
+    flex-direction: row;
+    height: 63px;
+    width: 100%;
+}
+
+.profile_img {
+	border-radius: 50%;
+	background-color: var(--main-block-color);
+}
+
+.dialog_rightside {
+    width: 100%;
+    padding: 4px;
+    border-bottom: 1px var(--main-border-color) solid;
+}
+
+.dialog_context {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 220px;
+}
+
+.dialog_field {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.dialog_field_header {
+    height: 48px;
+    border-bottom: 1px var(--main-border-color) solid;
+    padding: 12px;
+}
+
+.dialog_field_footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 5px 14px;
+    max-height: 200px;
+}
+
+.dialog_messages {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    height: 100%;
+    margin: 0 30px;
+    overflow-y: auto;
+}
+
+.message {
+    display: flex;
+    flex-direction: row;
+    min-height: 35px;
+    margin-bottom: 10px;
+}
+
+.message_rightside {
+    display: flex;
+    flex-direction: column;
+    margin-left: 5px;
+}
+
+.message_write {
+    display: block;
+    width: 93%;
+    border-radius: 5px;
+    border: 1px solid var(--main-border-color);
+    padding: 4px 14px;
+    font-family: Montserrat;
+    color: var(--writefield-text-color);
+    background-color: var(--writefield-background-color);
+    overflow-y: auto;
+}
+
+.message_write div{
+    font-family: inherit;
+}
+
+.message_send {
+    background-color: var(--main-block-color);
+    border: 0;
+    height: 28px;
+}
+
+.message_send svg {
+    padding-top: 10%;
+}
+
+
+

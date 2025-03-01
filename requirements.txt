@@ -1,0 +1,5 @@
+django
+djangorestframework
+django-sslserver
+uvicorn
+gunicorn

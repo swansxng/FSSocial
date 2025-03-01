@@ -1,0 +1,47 @@
+.container {
+	text-align: center;
+	width:350px;
+	margin: 100px auto 0 auto;
+}
+
+a.register:active,
+a.register:hover,
+a.register{
+    text-decoration: none;
+    font-family: Blinker;
+    color: black;
+}
+
+.logo{
+	color: #e1e1e1;
+	font-size: 60px;
+	font-family: Blinker;
+}
+
+.form_cls {
+	padding: 30px;
+	background-color: #e1e1e1;
+	border-radius: 20px;
+}
+
+input[type="text"],input[type="password"]{
+ width: 200px;
+ height:30px;
+ font-size: 11px;
+ margin-bottom: 10px;
+ border-radius: 2px;
+ border-color: black;
+ padding-left: 10px;
+ border-radius: 5px
+}
+
+input[type="submit"] {
+	 width: 200px;
+ height:30px;
+ font-size: 11px;
+ margin-bottom: 10px;
+ border-radius: 2px;
+ border-color: black;
+ padding-left: 10px;
+ border-radius: 5px
+}

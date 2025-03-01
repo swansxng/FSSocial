@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register in FFSocial</title>
+  <link rel="stylesheet" href="{% static 'social/css/login.css' %}">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Blinker&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <div class="logo">FSSocial</div>
+    <form action="" method="post" class="form_cls">
+        {% csrf_token %}
+        <div class="email"><input type="text" name="email" placeholder="Email"></div>
+        <div class="name"><input type="text" name="name" placeholder="Name"></div>
+        <div class="surname"><input type="text" name="surname" placeholder="Surname"></div>
+        <div class="password"><input type="password" name="password" placeholder="Password" autocomplete="off"></div>
+        <div class="check_password"><input type="password" name="password_check" placeholder="Repeat password"></div>
+        <div class="send"><input type="submit" name="submit" value="Send code on email"></div>
+    </form>
+  </div>
+</body>
+</html>
